@@ -15,7 +15,7 @@ function updateItems(e, ui) {
 		    }
 
 	      var klasses = '';
-        if ((item.hours_ago == 0) || item.is_new) {
+        if ((item.hours_ago < 2) || item.is_new) {
 	        klasses = 'new';
         };
         
