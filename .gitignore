@@ -1,2 +1,4 @@
 public/data/*.json
 tmp/*
+.DS_Store
+._*
