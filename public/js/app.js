@@ -18,6 +18,7 @@ function updateItems(e, ui) {
 		    }
 
 	      var klasses = '';
+	      // Once enough days have been crawled with the updated crawler, just use is_new.. checking the hour count is a temporary hack
         if ((item.hours_ago < 2) || item.is_new) {
 	        klasses = 'new';
         };
