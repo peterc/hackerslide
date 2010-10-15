@@ -1,1 +1,15 @@
-Hacker Slide is a 
+Hacker Slide - http://hackerslide.com/ - is an experimental Hacker News client that stores snapshots of the front page items over time and allows you to scroll through them. I lifted the concept (though no code) from a Reddit equivalent at http://redditsnapshot.sweyla.com/
+
+As of writing, the crawler on the main site has only been running for a day so there's not much data yet. Over time, I plan to extend the interface to deal with scrolling through days/weeks/months/etc. For now, it's just very simple.
+
+There's very little code to pull this off but whatever there is and that isn't already licensed is BSD licensed so you can do almost whatever you want.
+
+Technologies used:
+
+* Ruby
+* Sinatra - http://sinatrarb.com/
+* jQuery and jQuery UI
+* Slider control - http://www.filamentgroup.com/lab/update_jquery_ui_slider_from_a_select_element_now_with_aria_support/
+* ruby-hackernews - http://github.com/bolthar/ruby-hackernews
+
+- Peter Cooper http://twitter.com/peterc http://peterc.org/
