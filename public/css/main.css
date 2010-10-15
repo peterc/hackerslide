@@ -7,7 +7,7 @@ BODY {
   border-top: 12px solid #f70;
 }
 
-#page { width: 940px; margin: 20px auto; }
+#page { min-width: 820px; max-width: 1050px; margin: 20px auto; }
 
 A { color: #000; text-decoration: none; }
 A:visited { color: #666; }
