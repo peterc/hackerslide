@@ -7,10 +7,10 @@ BODY {
   border-top: 12px solid #f70;
 }
 
+#page { width: 940px; margin: 20px auto; }
+
 A { color: #000; text-decoration: none; }
 A:visited { color: #666; }
-
-#page { width: 940px; margin: 20px auto; }
 
 H1 { font-size: 2.5em; margin-bottom: 0; }
 
@@ -21,9 +21,11 @@ P.subhead { margin-top: 0; margin-bottom: 30px; line-height: 1.5em; }
 #items { font-family: verdana, sans-serif; }
 #items ol { margin-left: 0px; list-style-position: outside; padding-left: 2.2em; }
 #items li { margin-bottom: 8px; }
+#items li.new { background-color: #fed }
+
 .sub { font-size: 7pt }
 .site { font-size: 8pt }
 .sub, .sub A, .site { color: #666; }
-li.new { background-color: #fed }
-  
+
 #footer { margin-top: 1em; border-top: 2px solid #ccc; font-size: 0.9em; line-height: 1.5em; padding: 1em; }
+#footer A { text-decoration: underline; }

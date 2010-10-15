@@ -1,68 +1,70 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<head>
-  <title>Hacker Slide: Snapshots of Hacker News Over Time</title>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="/js/selectToUISlider.jQuery.js"></script>
-  <script type="text/javascript" src="/js/app.js"></script>  
-  <link rel="stylesheet" href="/css/main.css" type="text/css" />
-  <link rel="stylesheet" href="/css/redmond/jquery-ui-1.7.1.custom.css" type="text/css" />
-  <link rel="stylesheet" href="/css/ui.slider.extras.css" type="text/css" />
-  <meta http-equiv="refresh" content="3600" />
-</head>
+  <head>
+    <title>Hacker Slide: Snapshots of Hacker News Over Time</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/selectToUISlider.jQuery.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>  
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/css/redmond/jquery-ui-1.7.1.custom.css" type="text/css" />
+    <link rel="stylesheet" href="/css/ui.slider.extras.css" type="text/css" />
+    <meta http-equiv="refresh" content="3600" />
+  </head>
 
-<body>
-  <a href="http://github.com/peterc/hackerslide"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub" /></a>
-  
-  <div id="page">
-    <h1>Hacker <em>Slide</em></h1>
-    <p class="subhead">The <a href="http://news.ycombinator.com/" style="text-decoration: underline">Hacker News</a> front page over time (GMT) &mdash; drag the slider below<br /><small>(Still very new and the UI is a work in progress.. once more data is collected things will change a bit)</small></p>
+  <body>
+    <a href="http://github.com/peterc/hackerslide"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub" /></a>
     
-    <div id="slidercontainer">
-	  	<select name="date" id="slider">
-	  	  <% @dates.each do |date| %>
-	  		  <option value="<%= date %>" selected="selected"><%= date[/\d{2}-\d{2}-\d+$/].sub('-', '/').sub('-', ' ') %>:00</option>
-	  		<% end %>
-      </select>
-	  </div>
-	  
-    <div id="items"></div>
+    <div id="page">
+      <h1>Hacker <em>Slide</em></h1>
+      <p class="subhead">The <a href="http://news.ycombinator.com/" style="text-decoration: underline">Hacker News</a> front page over time (GMT) &mdash; drag the slider below<br /><small>(Still very new and the UI is a work in progress.. once more data is collected things will change a bit)</small></p>
+      
+      <div id="slidercontainer">
+  	  	<select name="date" id="slider">
+  	  	  <% @dates.each do |date| %>
+  	  		  <option value="<%= date %>" selected="selected"><%= date[/\d{2}-\d{2}-\d+$/].sub('-', '/').sub('-', ' ') %>:00</option>
+  	  		<% end %>
+        </select>
+  	  </div>
+  	  
+      <div id="items"></div>
+      
+      <script type="text/javascript">
+        $(function(){
+  		  	$('select#slider').selectToUISlider({
+  		  	  tooltip: true,
+  		  	  labels: <%= [@dates.size / 10, 5].max %>,
+  		  	  labelSrc: "text", 
+  		  	  sliderOptions: {
+  		  	    change:function(e, ui) {  },
+  		  	    slideFunction: function() { updateItems(); }
+  		  	  }
+  		  	}).hide();
+  		  });
+  		  
+  		  updateItems();
+      </script>
+          
+      <div id="footer">
+        This site is not owned by or affiliated with Hacker News or Y Combinator.<br />
+        All content remains copyright of its original author.<br />
+        Created by <a href="http://news.ycombinator.com/user?id=petercooper">petercooper<a>, founder of <a href="http://coder.io/">coder.io.</a> Follow <a href="http://twitter.com/peterc">me on Twitter.</a><br />
+        Inspired by <a href="http://redditsnapshot.sweyla.com/">Reddit Snapshot.</a>
+      </div>
+    </div>
     
     <script type="text/javascript">
-      $(function(){
-		  	$('select#slider').selectToUISlider({
-		  	  tooltip: true,
-		  	  labels: <%= [@dates.size / 10, 5].max %>,
-		  	  labelSrc: "text", 
-		  	  sliderOptions: {
-		  	    change:function(e, ui) {  },
-		  	    slideFunction: function() { updateItems(); }
-		  	  }
-		  	}).hide();
-		  });
-		  
-		  updateItems();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2237791-20']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
     </script>
-        
-    <div id="footer">
-      This site is not owned by or affiliated with Hacker News or Y Combinator.<br />
-      All content remains copyright of its original author.<br />
-      Created by <a href="http://news.ycombinator.com/user?id=petercooper">petercooper<a>. Follow <a href="http://twitter.com/peterc">me on Twitter.</a><br />
-      Inspired by <a href="http://redditsnapshot.sweyla.com/">Reddit Snapshot.</a>
-    </div>
-  </div>
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-2237791-20']);
-    _gaq.push(['_trackPageview']);
-  
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-</body>
+  </body>
 </html>
