@@ -1,3 +1,6 @@
+// welcome to the little javascript shop of horrors
+// i intend to read one of those awesome tutorials showing how to do "modern" javascript some day..
+
 function updateItems(e, ui) {
   // a poor man's updating status indicator
   $('#items').css('background-color', '#f6f6ef');
