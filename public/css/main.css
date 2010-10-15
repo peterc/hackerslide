@@ -7,7 +7,7 @@ BODY {
   border-top: 12px solid #f70;
 }
 
-#page { min-width: 820px; max-width: 1050px; padding: 0px 32px; margin: 20px auto; }
+#page { min-width: 760px; max-width: 1050px; padding: 0px 36px; margin: 20px auto; }
 
 A { color: #000; text-decoration: none; }
 A:visited { color: #666; }
@@ -16,7 +16,7 @@ H1 { font-size: 2.5em; margin-bottom: 0; }
 
 P.subhead { margin-top: 0; margin-bottom: 30px; line-height: 1.5em; }
 
-#slidercontainer { height: 40px; font-size: 0.8em; }
+#slidercontainer { height: 40px; font-size: 0.8em; padding: 0px 12px; }
 
 #items { font-family: verdana, sans-serif; }
 #items ol { margin-left: 0px; list-style-position: outside; padding-left: 2.2em; }
