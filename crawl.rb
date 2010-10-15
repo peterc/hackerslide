@@ -24,7 +24,8 @@ items.map! do |item|
     :user => item.user.name,
     :hours_ago => ((Time.now.to_i - item.time.to_i) / 3600).to_i,
     :comments => item.instance_variable_get(:@comments_info).count,
-    :item_id => item.instance_variable_get(:@comments_info).page[/\d+/] }    # eugh!
+    :item_id => item.instance_variable_get(:@comments_info).page[/\d+/],
+    :is_new => (Time.now.to_i - item.time.to_i) < 3600 }    # eugh!
 end
 
 # Save the items in JSON format for later recall

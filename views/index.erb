@@ -1,46 +1,17 @@
 <html>
+
 <head>
   <title>Hacker Slide: Snapshots of Hacker News Over Time</title>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/js/selectToUISlider.jQuery.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>  
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/redmond/jquery-ui-1.7.1.custom.css" type="text/css" />
 	<link rel="stylesheet" href="/css/ui.slider.extras.css" type="text/css" />
-   <style type="text/css">
-    BODY {
-      font-family: verdana, "helvetica neue", helvetica, sans-serif;
-      font-size: 10pt;
-      color: #000;
-      background-color: #fff;
-      margin: 0;
-      border-top: 12px solid #f70;
-    }
-    
-    A { color: #000; text-decoration: none; }
-    A:visited { color: #666; }
-    
-    #page { width: 940px; margin: 20px auto; }
-    
-    H1 { font-size: 2.5em; margin-bottom: 0; }
-    
-    P.subhead { margin-top: 0; margin-bottom: 30px; line-height: 1.5em; }
-    
-    #slidercontainer { height: 40px; font-size: 0.8em; }
-    
-    #items { font-family: verdana, sans-serif; }
-    #items ol { margin-left: 0px; list-style-position: outside; padding-left: 2.2em; }
-    #items li { margin-bottom: 8px; }
-    .sub { font-size: 7pt }
-    .site { font-size: 8pt }
-    .sub, .sub A, .site { color: #666; }
-	li.new { background-color: #fed }
-    
-    #footer { margin-top: 1em; border-top: 2px solid #ccc; font-size: 0.9em; line-height: 1.5em; padding: 1em; }
-    
-   </style>
 </head>
+
 <body>
-  
   <div id="page">
     <h1>Hacker <em>Slide</em></h1>
     <p class="subhead">The <a href="http://news.ycombinator.com/" style="text-decoration: underline">Hacker News</a> front page over time (GMT) &mdash; drag the slider below<br /><small>(Still very new and the UI is a work in progress.. once more data is collected things will change a bit)</small></p>
@@ -50,76 +21,45 @@
 	  	  <% @dates.each do |date| %>
 	  		  <option value="<%= date %>" selected="selected"><%= date[/\d{2}-\d{2}-\d+$/].sub('-', '/').sub('-', ' ') %>:00</option>
 	  		<% end %>
-<!-- option value="now" selected="selected">Now</option --> 	</select>
+      </select>
 	  </div>
 	  
     <div id="items"></div>
     
-    <div id="footer">This site is not owned by or affiliated with Hacker News or Y Combinator.<br />All content remains copyright of its original author.<br />Created by <a href="http://news.ycombinator.com/user?id=petercooper">petercooper<a> and inspired by <a href="http://redditsnapshot.sweyla.com/">Reddit Snapshot.</a> Follow <a href="http://twitter.com/peterc">me on Twitter.</a></div>
+    <script type="text/javascript">
+      $(function(){
+		  	$('select#slider').selectToUISlider({
+		  	  tooltip: true,
+		  	  labels: <%= [@dates.size / 10, 3].max %>,
+		  	  labelSrc: "text", 
+		  	  sliderOptions: {
+		  	    change:function(e, ui) {  },
+		  	    slideFunction: function() { updateItems(); }
+		  	  }
+		  	}).hide();
+		  });
+		  
+		  updateItems();
+    </script>
+        
+    <div id="footer">
+      This site is not owned by or affiliated with Hacker News or Y Combinator.<br />
+      All content remains copyright of its original author.<br />
+      Created by <a href="http://news.ycombinator.com/user?id=petercooper">petercooper<a>. Follow <a href="http://twitter.com/peterc">me on Twitter.</a><br />
+      Inspired by <a href="http://redditsnapshot.sweyla.com/">Reddit Snapshot.</a>
+    </div>
   </div>
   
-  
   <script type="text/javascript">
-		$(function(){
-			$('select#slider').selectToUISlider({
-			  tooltip: true,
-			  labels: <%= [@dates.size / 10, 3].max %>,
-			  labelSrc: "text", 
-			  sliderOptions: {
-			    change:function(e, ui) {  },
-			    slideFunction: function() { updateItems(); }
-			  }
-			}).hide();
-		});
-		
-		function updateItems(e, ui) {
-		  url = '/data/' + $('select#slider').val() + '.json';
-		  $('#items').css('background-color', '#f6f6ef');
-		  
-		  $.getJSON(url,function(json){
-          if (json) {
-            $('#items').css('background-color', 'inherit');
-      		  
-            var display = '<ol>';
-            
-            $.each(json,function(i,item){
-		if (!/^http/.test(item.href)) {
-			item.href = 'http://news.ycombinator.com/' + item.href;
-		}
-
-	var klasses = '';
-if (item.hours_ago < 2) {
-	klasses = 'new';
-};
-               display += '<li class="item ' + klasses + '"><a href="' + item.href + '">' + item.title + '</a>';
-		if (item.site) { 
-			display += ' <span class="site">(' + item.site + ')</span>';
-		}
-		display += '<br /><div class="sub">' + item.score + ' points by <a href="http://news.ycombinator.com/user?id=' + item.user + '">' + item.user + '</a> ' + item.hours_ago + ' hours ago | <a href="http://news.ycombinator.com/item?id=' + item.item_id + '">' + item.comments + ' comments</a></div></li>';
-            });
-            
-            display += '</ol>';
-            
-            $('#items').html(display);
-          };
-        });
-		}
-		
-		updateItems();
-	</script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2237791-20']);
+    _gaq.push(['_trackPageview']);
   
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-2237791-20']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </body>
 </html>
