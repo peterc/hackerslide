@@ -2,3 +2,4 @@ public/data/*.json
 tmp/*
 .DS_Store
 ._*
+.rvmrc
