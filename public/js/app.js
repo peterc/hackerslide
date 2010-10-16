@@ -23,7 +23,7 @@ function updateItems(e, ui) {
 	        klasses = klasses + 'new';
         };
 
-        display += '<li data-id="' + item.item_id + '" class="item"><div class="container' + klasses + '"><a href="' + item.href + '">' + item.title + '</a>';
+        display += '<li data-id="' + item.item_id + '" class="item' + klasses + '"><div class="container' + klasses + '"><a href="' + item.href + '">' + item.title + '</a>';
         
 		    if (item.site) { 
 			    display += ' <span class="site">(' + item.site + ')</span>';

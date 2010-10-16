@@ -7,7 +7,9 @@ body {
   border-top: 12px solid #f70;
 }
 
-#page { min-width: 760px; max-width: 1050px; padding: 0px 36px; margin: 20px auto; }
+ol { margin: 0; padding: 0; }
+
+#page { position: relative; min-width: 760px; max-width: 1050px; padding: 0px 36px; margin: 20px auto; }
 
 a { color: #000; text-decoration: none; }
 a:visited { color: #666; }
@@ -20,12 +22,13 @@ p.subhead { margin-top: 0; margin-bottom: 30px; line-height: 1.5em; }
 
 #handle_slider { -webkit-transition: all .75s ease-in-out; }
 
-#items { font-family: verdana, sans-serif; }
-#items ol { margin-left: 0px; list-style-position: outside; padding-left: 2.2em; }
-#items li { list-style: none; }
-/*
-#items li .container.new { background-color: #fed } Removed due to js animation issues
-*/
+#items { font-family: verdana, sans-serif; list-style-position: outside; }
+#items li { list-style: none; width: 100%; }
+
+#items li .container { -webkit-transition: all .75s ease-in-out; }
+#items li .container.new { background-color: #fed; }
+#items.animating li .container.new { background-color: white; }
+
 .sub { font-size: 7pt; margin-bottom: 8px; }
 .site { font-size: 8pt }
 .sub, .sub A, .site { color: #666; }
