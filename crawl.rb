@@ -16,8 +16,8 @@ require 'ruby-hackernews'
       :score => item.voting.score, 
       :user => item.user.name,
       :hours_ago => ((Time.now.to_i - item.time.to_i) / 3600).to_i,
-      :comments => item.instance_variable_get(:@comments_info).count,
-      :item_id => item.instance_variable_get(:@comments_info).page[/\d+/],
+      :comments => item.comments_count,
+      :item_id => item.id,
       :is_new => (Time.now.to_i - item.time.to_i) < 3600 }    # eugh!
   end
 
