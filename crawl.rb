@@ -25,7 +25,7 @@ require 'ruby-hackernews'
   time = Time.now.gmtime
   filename = File.dirname(__FILE__) + "/public/data/"
   now_filename = filename + "now.json"
-  filename += "#{time.year}-#{time.month}-#{time.mday}"
+  filename += "#{time.year}-#{sprintf("%.2d", time.month)}-#{sprintf("%.2d", time.mday)}"
   daily_filename = filename + ".json"
   hourly_filename = filename + "-#{sprintf("%.2d", Time.now.hour)}.json"
 
