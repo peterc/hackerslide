@@ -1,4 +1,4 @@
-BODY {
+body {
   font-family: verdana, "helvetica neue", helvetica, sans-serif;
   font-size: 10pt;
   color: #000;
@@ -7,23 +7,29 @@ BODY {
   border-top: 12px solid #f70;
 }
 
-#page { min-width: 760px; max-width: 1050px; padding: 0px 36px; margin: 20px auto; }
+ol { margin: 0; padding: 0; }
 
-A { color: #000; text-decoration: none; }
-A:visited { color: #666; }
+#page { position: relative; min-width: 760px; max-width: 1050px; padding: 0px 36px; margin: 20px auto; }
 
-H1 { font-size: 2.5em; margin-bottom: 0; }
+a { color: #000; text-decoration: none; }
+a:visited { color: #666; }
 
-P.subhead { margin-top: 0; margin-bottom: 30px; line-height: 1.5em; }
+h1 { font-size: 2.5em; margin-bottom: 0; }
+
+p.subhead { margin-top: 0; margin-bottom: 30px; line-height: 1.5em; }
 
 #slidercontainer { height: 52px; font-size: 0.8em; margin: 0px 24px; padding-top: 8px }
 
-#items { font-family: verdana, sans-serif; }
-#items ol { margin-left: 0px; list-style-position: outside; padding-left: 2.2em; }
-#items li { margin-bottom: 8px; }
-#items li.new { background-color: #fed }
+#handle_slider { -webkit-transition: all .75s ease-in-out; }
 
-.sub { font-size: 7pt }
+#items { font-family: verdana, sans-serif; list-style-position: outside; }
+#items li { list-style: none; width: 100%; }
+
+#items li .container { -webkit-transition: all .75s ease-in-out; }
+#items li .container.new { background-color: #fed; }
+#items.animating li .container.new { background-color: white; }
+
+.sub { font-size: 7pt; margin-bottom: 8px; }
 .site { font-size: 8pt }
 .sub, .sub A, .site { color: #666; }
 
